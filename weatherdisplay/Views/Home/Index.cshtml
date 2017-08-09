@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "Current Weather Display";
+}
+<div class="jumbotron">
+    <h2>Weather Display</h2>
+    <p>by Narendran Selvaraj</p>
+</div>
+
+<div>
+    <div class="col-md-12 input-group">
+        <input type="text" id="countryName"class="form-control" placeholder="Country Name e.g. Australia" aria-describedby="basic-addon1" data-val="true" data-val-required="Please enter a country name!" >
+        <button class="btn btn-default" id="getCities" type="button">Go!</button>
+        <span class="field-validation-valid" data-valmsg-for="countryName" data-valmsg-replace="true"></span>
+        <p></p>
+    </div>
+</div>
+
+<div  class="col-md-12" id="weatherDis" style="display:none" >
+    <div class="panel panel-default" id="listOfCities" >
+        <table id="cityList" class="table table-striped">
+            <tr>
+                <th>Country</th>
+                <th>City</th>
+            </tr>
+            <tbody data-bind="template: { foreach:cities }">
+                <tr data-bind="click: function () {weatherViewModel.getWeatherData($data);}">
+                    <td data-bind="text: country"> </td>
+                    <td data-bind="text: name"> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="weatherData" style="display:none;z-index: 999;">
+    <div class="panel panel-default" id="weatherDisplay" data-bind="weatherData">
+        <div class="panel-heading" data-bind="text:weatherData.Name"></div>
+        <div class="panel-body" style="z-index:9999">
+            <table class="table table-condensed">
+                <tr>
+                    <th>Weather data</th>
+                    <th>Values - in metric units</th>
+                </tr>
+                <tbody>
+                    <tr>
+                        <td>Location </td>
+                        <td data-bind="text:weatherData.Location"></td>
+                    </tr>
+                    <tr>
+                        <td>Time</td>
+                        <td data-bind="text:weatherData.Time"></td>
+                    </tr>
+                    <tr>
+                        <td>Wind</td>
+                        <td data-bind="text:weatherData.Wind">weatherData.Wind</td>
+                    </tr>
+                    <tr>
+                        <td>Visibility</td>
+                        <td data-bind="text:weatherData.Visibility">weatherData.Visibility</td>
+                    </tr>
+                    <tr>
+                        <td>SkyConditions</td>
+                        <td data-bind="text:weatherData.SkyConditions">weatherData.SkyConditions</td>
+                    </tr>
+                    <tr>
+                        <td>Temperature</td>
+                        <td data-bind="text:weatherData.Temperature">weatherData.Temperature</td>
+                    </tr>
+                    <tr>
+                        <td>DewPoint</td>
+                        <td data-bind="text:weatherData.DewPoint">weatherData.DewPoint</td>
+                    </tr>
+                    <tr>
+                        <td>Relative Humidity</td>
+                        <td data-bind="text:weatherData.RelativeHumidity">weatherData.RelativeHumidity</td>
+                    </tr>
+                    <tr>
+                        <td>Pressure</td>
+                        <td data-bind="text:weatherData.Pressure"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+
+                            Press Escape to Close this dialog.
+                            <!--<button type="button" id="weatherDataClose"class="btn btn-default btn-lg btn-block" onclick="CloseWeatherDialog">
+                                Close
+                            </button>-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
